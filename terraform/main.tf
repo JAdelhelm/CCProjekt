@@ -11,9 +11,9 @@ terraform {
 
 provider "aws" {
   region     = "us-east-1"
-  access_key = "ASIAYVV5L5WH6MIAD5XQ"
-  secret_key = "cXjHQyccM7QOlATeo54Dv56dhOYKdi7X9+UIpa00"
-  token      = "FwoGZXIvYXdzEBEaDEMMyPzKWw//B5nEpSLXARY94BYKPFVd1NAqh84cnYiT8QuwM4kkG82xxx+E4OJ8kOx26OVjpUR0Vz2kGEAtFV/oGAGvFXbwbjbA/S6UCW192Zwn+K02XgkgMN0brS+h8pHGAmDAorwE2lbYO+TfJOp2pLe8I48kZ628TkLoJcgkMCFFM1rGIP/OQMUPo3FCMRm47F3mQNOGCQ2OwCvnrpPflDKEdLihC/Lzpi9IO1fu4cNjeaisv1/tA8LasMNRk/+Rmcj50JEC2XgqL3d84+bl7bY3b4vJM9Yh5dLu64SgZdMICTwKKKCst5kGMi0cpzp5nfDSTMGAtE8oESN6CCsAPYeCL4WEESLYIqOy2+ecrCtdKz5cNrCp7Ko="
+  access_key = "ASIAWN4K27KA3PWH6B5Z"
+  secret_key = "lclwq452F8bzk+MrApLxPj2khKf4Xn++3hfj1wjq"
+  token      = "FwoGZXIvYXdzEFgaDMrbikGU4kdG4uJ3DiLWAYvECOve7wCeraFnsr+MyFvQKCd18cAEtlteaW+ir/7Lllrq9DxqF8GccVFb96r0pG8D0cG8/WcqEU7FAjLOue3tFFNTY/MJapTvaXtFJYC5Czmus9A3ywA5u2h7RdmeflNOiqPyRLEhOYRSp5MnAywoMO3hWPSueah5S1DgycmOpj1UAn4LmU6quO3e9SGFIo4U+j2EBrHxikGal76hopFuOtZZ91FEclvQgH2G+RkP/c4velPMz+cLcfj0CRwAi7OEBjSykrN+K2CKgJinFzT1WwdfIFooxevGmQYyLfJ4tmZqou8v7hDTjcZSLuwueS9SJOmGnRLdYVsHzd4zAddxr8K6qXETvel4lQ=="
 }
 
 resource "aws_vpc" "app_vpc" {
@@ -24,12 +24,24 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.app_vpc.id
 }
 
+
+
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.app_vpc.id
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
 }
+
+resource "aws_subnet" "public_subnet2" {
+  vpc_id                  = aws_vpc.app_vpc.id
+  cidr_block              = "10.0.2.0/24"
+  map_public_ip_on_launch = true
+  availability_zone       = "us-east-1b"
+}
+
+
+
 
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.app_vpc.id
@@ -124,13 +136,20 @@ resource "aws_security_group" "sg" {
   }
 }
 
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "bucket_example" {
   bucket = var.s3_bucket_name
   tags   = var.tags
+
 }
 
+resource "aws_s3_bucket_acl" "example_bucket_acl" {
+  bucket = aws_s3_bucket.bucket_example.id
+  acl    = "public-read-write"
+}
+
+
 resource "aws_db_instance" "mysql-database" {
-  allocated_storage    = 2
+  allocated_storage    = 10
   db_name              = "coolDB"
   engine               = "mysql"
   engine_version       = "5.7"
@@ -138,15 +157,15 @@ resource "aws_db_instance" "mysql-database" {
   username             = "admin"
   password             = "supergutespasswort"
   skip_final_snapshot  = true
-
-  tags = {
-    Name = "mysql-database"
-  }
 }
 
-# Optional, falls nicht erstellt wird, weiß man auf Terraform-Seite allerdings nicht das die erstellt wurde (arn = Unique identifier)
+
+
+# Optional, falls nicht erstellt wird, 
+# weiß man auf Terraform-Seite allerdings nicht das 
+#  die erstellt wurde (arn = Unique identifier)
 output "s3_bucket_arn" {
-    value = aws_s3_bucket.bucket.arn
+    value = aws_s3_bucket.bucket_example.arn
 }
 
 resource "aws_network_interface" "web-server-nic" {
@@ -165,3 +184,5 @@ resource "aws_eip" "one" {
 output "web_instance_ip" {
   value = aws_instance.webserver.public_ip
 }
+
+
