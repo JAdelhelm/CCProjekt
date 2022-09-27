@@ -12,3 +12,4 @@ variable "tags" {
     Environment = "Production"
   }
 }
+

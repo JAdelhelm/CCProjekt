@@ -1,21 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.16"
-    }
-  }
-
-  required_version = ">= 1.2.0"
-}
-
-provider "aws" {
-  region     = "us-east-1"
-  access_key = "ASIAWN4K27KA3PWH6B5Z"
-  secret_key = "lclwq452F8bzk+MrApLxPj2khKf4Xn++3hfj1wjq"
-  token      = "FwoGZXIvYXdzEFgaDMrbikGU4kdG4uJ3DiLWAYvECOve7wCeraFnsr+MyFvQKCd18cAEtlteaW+ir/7Lllrq9DxqF8GccVFb96r0pG8D0cG8/WcqEU7FAjLOue3tFFNTY/MJapTvaXtFJYC5Czmus9A3ywA5u2h7RdmeflNOiqPyRLEhOYRSp5MnAywoMO3hWPSueah5S1DgycmOpj1UAn4LmU6quO3e9SGFIo4U+j2EBrHxikGal76hopFuOtZZ91FEclvQgH2G+RkP/c4velPMz+cLcfj0CRwAi7OEBjSykrN+K2CKgJinFzT1WwdfIFooxevGmQYyLfJ4tmZqou8v7hDTjcZSLuwueS9SJOmGnRLdYVsHzd4zAddxr8K6qXETvel4lQ=="
-}
-
 resource "aws_vpc" "app_vpc" {
   cidr_block = "10.0.0.0/16"
 }
@@ -23,7 +5,6 @@ resource "aws_vpc" "app_vpc" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.app_vpc.id
 }
-
 
 
 resource "aws_subnet" "public_subnet" {
@@ -39,7 +20,6 @@ resource "aws_subnet" "public_subnet2" {
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1b"
 }
-
 
 
 
@@ -137,6 +117,8 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_s3_bucket" "bucket_example" {
+  # Hier werden über das Schlüsselwort "var"
+  # Die Variablen aus variables.tf übergeben
   bucket = var.s3_bucket_name
   tags   = var.tags
 
@@ -160,14 +142,6 @@ resource "aws_db_instance" "mysql-database" {
 }
 
 
-
-# Optional, falls nicht erstellt wird, 
-# weiß man auf Terraform-Seite allerdings nicht das 
-#  die erstellt wurde (arn = Unique identifier)
-output "s3_bucket_arn" {
-    value = aws_s3_bucket.bucket_example.arn
-}
-
 resource "aws_network_interface" "web-server-nic" {
   subnet_id       = aws_subnet.public_subnet.id
   private_ips     = ["10.0.1.50"]
@@ -179,10 +153,6 @@ resource "aws_eip" "one" {
   network_interface         = aws_network_interface.web-server-nic.id
   associate_with_private_ip = "10.0.1.50"
   depends_on                = [aws_internet_gateway.igw]
-}
-
-output "web_instance_ip" {
-  value = aws_instance.webserver.public_ip
 }
 
 
