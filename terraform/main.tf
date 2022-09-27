@@ -27,7 +27,7 @@ resource "aws_route_table" "public_rt" {
 # 4. Subnetze erzeugen
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.app_vpc.id
-  cidr_block              = "10.1.0.0/16"
+  cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
   tags = {
@@ -37,7 +37,7 @@ resource "aws_subnet" "public_subnet" {
 
 resource "aws_subnet" "public_subnet2" {
   vpc_id                  = aws_vpc.app_vpc.id
-  cidr_block              = "10.2.0.0/16"
+  cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1b"
     tags = {
@@ -105,7 +105,8 @@ resource "aws_security_group" "sg" {
 
 resource "aws_network_interface" "web-server-nic" {
   subnet_id       = aws_subnet.public_subnet.id
-  private_ips     = ["10.1.0.0","10.2.0.0"]
+  private_ips_count = 1
+  private_ips     = ["10.0.1.50","10.0.1.100"]
   security_groups = [aws_security_group.sg.id]
 }
 
@@ -114,14 +115,14 @@ resource "aws_network_interface" "web-server-nic" {
 resource "aws_eip" "one" {
   vpc                       = true
   network_interface         = aws_network_interface.web-server-nic.id
-  associate_with_private_ip = "10.1.0.0"
+  associate_with_private_ip = "10.0.1.50"
   depends_on                = [aws_internet_gateway.igw]
 }
 
 resource "aws_eip" "two" {
   vpc                       = true
   network_interface         = aws_network_interface.web-server-nic.id
-  associate_with_private_ip = "10.2.0.0"
+  associate_with_private_ip = "10.0.1.100"
   depends_on                = [aws_internet_gateway.igw]
 }
 
@@ -163,18 +164,19 @@ resource "aws_s3_bucket_acl" "example_bucket_acl" {
 
 # 11. Erzeugen einer MySQL-Datenbank
 
-# Auto-Scaling 10-40
-resource "aws_db_instance" "mysql-database" {
-  allocated_storage    = 10
-  max_allocated_storage = 40
-  db_name              = "coolDB"
-  engine               = "mysql"
-  engine_version       = "5.7"
-  instance_class       = "db.t2.micro"
-  username             = "admin"
-  password             = "supergutespasswort"
-  skip_final_snapshot  = true
-}
+# Auto-Scaling 10 - 40
+
+# resource "aws_db_instance" "mysql-database" {
+#   allocated_storage    = 10
+#   max_allocated_storage = 40
+#   db_name              = "coolDB"
+#   engine               = "mysql"
+#   engine_version       = "5.7"
+#   instance_class       = "db.t2.micro"
+#   username             = "admin"
+#   password             = "supergutespasswort"
+#   skip_final_snapshot  = true
+# }
 
 
 
