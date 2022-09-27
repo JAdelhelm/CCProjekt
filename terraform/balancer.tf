@@ -34,19 +34,19 @@ resource "aws_lb" "network_lb" {
   }
 }
 
-# Es werden zwei subnetes übergeben, mit jeweils zwei verschiedenen
+# Es werden zwei Subnetze übergeben, mit jeweils zwei verschiedenen
 # elastischen IP-Adressen
-resource "aws_lb" "elasticIP" {
-  name               = "elasticIPExample"
-  load_balancer_type = "network"
+# resource "aws_lb" "elasticIP" {
+#   name               = "elasticIPExample"
+#   load_balancer_type = "network"
 
-  subnet_mapping {
-    subnet_id     = aws_subnet.public_subnet.id
-    allocation_id = aws_eip.one.id
-  }
+#   subnet_mapping {
+#     subnet_id     = aws_subnet.public_subnet.id
+#     allocation_id = aws_eip.one.id
+#   }
 
-  subnet_mapping {
-    subnet_id     = aws_subnet.public_subnet2.id
-    allocation_id = aws_eip.two.id
-  }
-}
+#   subnet_mapping {
+#     subnet_id     = aws_subnet.public_subnet2.id
+#     allocation_id = aws_eip.two.id
+#   }
+# }
