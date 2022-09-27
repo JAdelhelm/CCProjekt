@@ -12,6 +12,6 @@ output "web_instance_ip" {
 }
 
 # Output des Namens von der MySQL Datenbank
-# output "mysql_name" {
-#     value = "MySQL-Name: ${aws_db_instance.mysql-database.db_name}"
-# }
+output "mysql_name" {
+    value = "MySQL-Name: ${aws_db_instance.mysql-database.db_name}"
+}
