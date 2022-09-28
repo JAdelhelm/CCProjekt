@@ -13,8 +13,8 @@ variable "tags" {
   description = "[Optional, map] tags"
   type        = map(any)
   default = {
-    Name        = "CloudComputingGroup17"
-    Environment = "Production"
+    Name        = "bucketTag"
+    Environment = "staging"
   }
 }
 
