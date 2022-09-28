@@ -25,3 +25,9 @@ resource "aws_s3_bucket" "bucket_example" {
   tags   = var.tags
 
 }
+
+# Variable für die Cloud9-Umgebung
+variable "region" {
+  default = "us-east-1"
+
+}

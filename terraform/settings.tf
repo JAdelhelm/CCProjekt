@@ -13,7 +13,7 @@ terraform {
 # AWS LAB
 provider "aws" {
   region     = "us-east-1"
-  access_key = "ASIAWN4K27KAQQQZDZDB"
-  secret_key = "sM01q3u2YVLfKgqO9LCBQDJ+SwtKZoRXTV4I9Rhv"
-  token      = "FwoGZXIvYXdzEHAaDJ076hJG/ot4uqIhZyLWAaLL3Ur+jQuQmGRr2eFuH/mG9C/xvMYUOArMmpSlcfGErlh9xNWNE5jvmjrVujXL+x1mDun1V+0RoftITNGoCMm1vxHDiExrbSPyWux366dHswYPHewgb0o/RJwA3rK0TibDbmFOoARFLtIxEIYVRkCqziCG0fz/coYUKSNYj3kPqnZvVmvSlOhkTtc+AhFi075KoQPKmr1d2mISi2hsAQ9Lho1AP/Zz3ZcBeweXeS240Em8ysAzIRUdYILrFlvtCBmx7yDFuhgeZgw+VjVmnsyLG9tfp6wogIvMmQYyLSdKAGo0VF2c/iNuhvzeAeW/quqaD38XGGD5AMeVo9TV6i1O9K5RoRwQwVMPDQ=="
+  access_key = "ASIAWN4K27KA7GFOBJUC"
+  secret_key = "AkYl16XPKZnc7JXAzGTi2Q4eevbYFkbpsHrBbh/Q"
+  token      = "FwoGZXIvYXdzEIv//////////wEaDG33lMgG3TV9V7KLaCLWAUe41dCk4Uvs22Gur0ZXheIkc6Oqx12ZJyGlGahc7p0M7z24s1GF0qwIVvRbWm65mCyx0MMutUui55m3ENTeBXhyQsLCQOttKSoBHe+yH6eBPYk24WCHdZS+669gPgLz8MOciPs9rfw5Ov0+SgCuzKDBsGN9kTmpJTGYuAl8sYVAelRMl4VPfp6NCXgSgahTOCytUyPHgQ7PV5DceKVyF9Ljyird2MpYVZkGmdVv0UXh53qS7HxvG6MW0vsQfvMMgzdZG7sFoMmqpdxgnO2ZB/62LpjRDFYo+P/RmQYyLQKByUmvxCZhlvBVDzuAbk7jpRrzMNWiMV+koAV+UAyfmigJdcJJ1/kx+4sxwQ=="
 }

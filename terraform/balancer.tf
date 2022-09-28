@@ -1,5 +1,5 @@
 resource "aws_lb" "application_lb" {
-  name               = "application-lb-tf"
+  name               = "application-lb-terra"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.sg.id]
@@ -20,7 +20,7 @@ resource "aws_lb" "application_lb" {
 }
 
 resource "aws_lb" "network_lb" {
-  name               = "network-lb-tf"
+  name               = "network-lb-terra"
 
   internal           = false
   load_balancer_type = "network"

@@ -15,3 +15,13 @@ output "web_instance_ip" {
 output "mysql_name" {
     value = "MySQL-Name: ${aws_db_instance.mysql-database.db_name}"
 }
+
+# Ausgabe der Cloud 9 URL
+output "cloud9_url" {
+  value = "https://${var.region}.console.aws.amazon.com/cloud9/ide/${aws_cloud9_environment_ec2.example.id}"
+}
+
+# Ausgabe der Cloud 9 Region
+output "cloud9_region" {
+  value = "Cloud9 Umgebung: ${var.region}"
+}
