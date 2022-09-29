@@ -1,4 +1,4 @@
-# Wir haben uns dazu entschlossen, nur die Dienste zu implementieren, welche innerhalb der AWS-LearnLab Umgebung zulässig sind.
+# Wir haben uns in diesem Ordner dazu entschlossen, nur die Dienste zu nutzen, welche in der AWS-Learner-Lab Umgebung zulässig sind.
 
 ## Zum Starten unseres Projekts sind folgende Schritte notwendig:
 1. Schlüsselpaare unter ``settings.tf`` übergeben.
