@@ -5,6 +5,7 @@ locals {
 
 
 resource "aws_sns_topic" "yaml_file_converter" {
+  # Name den AWS anlegt
   name = local.sns_topic_name
 
   policy = <<POLICY

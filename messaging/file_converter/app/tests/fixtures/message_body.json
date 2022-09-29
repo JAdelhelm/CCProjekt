@@ -20,11 +20,11 @@
                 "s3SchemaVersion": "1.0",
                 "configurationId": "tf-s3-topic-20220609063711926900000001",
                 "bucket": {
-                    "name": "com.decentnodes.file-converter.ingestion",
+                    "name": "CloudCompGroup17.file-converter.ingestion",
                     "ownerIdentity": {
                         "principalId": "A206983IIR6N1U"
                     },
-                    "arn": "arn:aws:s3:::com.decentnodes.file-converter.ingestion"
+                    "arn": "arn:aws:s3:::CloudCompGroup17.file-converter.ingestion"
                 },
                 "object": {
                     "key": "docker-compose.yml",

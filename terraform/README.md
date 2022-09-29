@@ -11,5 +11,6 @@ Falls beim destroyen ein Fehler des S3 Buckets auftrifft, muss hier ganz einfach
 - Löschen des Inhalts des S3 Buckets mit `aws s3 rm s3://<BUCKET_NAME> --recursive`
 - BUCKET_NAME muss entsprechend der einzigartig erstelle Bucketname sein
 
-### Wir haben für unser Projekt ausschließlich nur die Dokumentation von Terraform verwendet.
-https://registry.terraform.io/providers/hashicorp/aws/4.16.0/docs
+# Quellen
+-  Wir haben für dieses Projekt (terraform Ordner) ausschließlich nur die Terraform-Doku verwendet.
+    - https://registry.terraform.io/providers/hashicorp/aws/4.16.0/docs

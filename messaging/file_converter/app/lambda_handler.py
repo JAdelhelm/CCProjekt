@@ -9,7 +9,7 @@ import yaml
 LOG_LEVEL = getenv("LOG_LEVEL", "INFO")
 LAMBDA_WRITE_DIRECTORY = getenv("LAMBDA_WRITE_DIRECTORY", "/tmp")
 CONVERTED_BUCKET = getenv(
-    "CONVERTED_BUCKET", "com.decentnodes.file-converter.converted")
+    "CONVERTED_BUCKET", "CloudCompGroup17.file-converter.converted")
 
 logger = getLogger()
 logger.setLevel(LOG_LEVEL)
@@ -108,7 +108,7 @@ if __name__ == "__main__":
             {
                 "messageId": "19dd0b57-b21e-4ac1-bd88-01bbb068cb78",
                 "receiptHandle": "MessageReceiptHandle",
-                "body": "{\"Records\":[{\"eventVersion\":\"2.1\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"eu-central-1\",\"eventTime\":\"2022-06-08T12:18:23.457Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"AWS:AIDAXMV3DAZJ3RWLCLF7U\"},\"requestParameters\":{\"sourceIPAddress\":\"79.252.87.99\"},\"responseElements\":{\"x-amz-request-id\":\"H45F9BV4BHF42XY3\",\"x-amz-id-2\":\"AYGcNy4jFhSzUQH03dP/wAlw8mR05pveydAVWhZhvpiMhCOIFZkysuwrHKr1pTzZFi++hgfHts79C6tbGG3FDjzLZubT1PF7\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"tf-s3-topic-20220608115136729600000001\",\"bucket\":{\"name\":\"com.decentnodes.file-converter.ingestion\",\"ownerIdentity\":{\"principalId\":\"A206983IIR6N1U\"},\"arn\":\"arn:aws:s3:::com.decentnodes.file-converter.ingestion\"},\"object\":{\"key\":\"docker-compose.yml\",\"size\":1798,\"eTag\":\"00c4f511b9e0ea3fc6d8e07f4cc66855\",\"sequencer\":\"0062A0938F6BC61155\"}}}]}",
+                "body": "{\"Records\":[{\"eventVersion\":\"2.1\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"eu-central-1\",\"eventTime\":\"2022-06-08T12:18:23.457Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"AWS:AIDAXMV3DAZJ3RWLCLF7U\"},\"requestParameters\":{\"sourceIPAddress\":\"79.252.87.99\"},\"responseElements\":{\"x-amz-request-id\":\"H45F9BV4BHF42XY3\",\"x-amz-id-2\":\"AYGcNy4jFhSzUQH03dP/wAlw8mR05pveydAVWhZhvpiMhCOIFZkysuwrHKr1pTzZFi++hgfHts79C6tbGG3FDjzLZubT1PF7\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"tf-s3-topic-20220608115136729600000001\",\"bucket\":{\"name\":\"CloudCompGroup17.file-converter.ingestion\",\"ownerIdentity\":{\"principalId\":\"A206983IIR6N1U\"},\"arn\":\"arn:aws:s3:::CloudCompGroup17.file-converter.ingestion\"},\"object\":{\"key\":\"docker-compose.yml\",\"size\":1798,\"eTag\":\"00c4f511b9e0ea3fc6d8e07f4cc66855\",\"sequencer\":\"0062A0938F6BC61155\"}}}]}",
                         "attributes": {
                             "ApproximateReceiveCount": "1",
                             "SentTimestamp": "1523232000000",

@@ -53,6 +53,7 @@ variable "tags" {
   type        = map(any)
   default = {
     Environment = "staging"
+    # Bezeichnung des Service
     Service     = "file-converter"
   }
 }
